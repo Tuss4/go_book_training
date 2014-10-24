@@ -35,6 +35,8 @@ func main() {
         fmt.Println("You suck at code, bro.")
     }
 
+    // For loops
+
     for i := 1; i <= 10; i++ {
         if i%2 == 0{
             fmt.Println(i, "even")
@@ -48,6 +50,9 @@ func main() {
             fmt.Println(i)
         }
     }
+    
+    // Switch and FizzBuzz
+
     for i :=1; i<= 100; i++ {
         switch {
             case i%3 == 0 && i%5 ==0: fmt.Println("FizzBuzz")
@@ -81,4 +86,10 @@ func main() {
     fmt.Println(len(xp_slc))
     fmt.Println(5 == cap(xp_slc))
     fmt.Println(cap(xp_slc))
+    
+    // Let's append to a slice
+    xp_slc_2 := append(xp_slc, 26)
+    fmt.Println(4 == len(xp_slc_2))
+
+    // Maps
 }
