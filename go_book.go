@@ -117,7 +117,7 @@ func main() {
     // length of that slice would be 3 with a cap of 9
     // x[2:5] = ["c", "d", "e"]
 
-    // smallest number
+    // smallest number problem
     smallest := []int{
         48,96,86,68,
         57,82,63,70,
