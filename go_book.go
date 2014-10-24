@@ -125,9 +125,9 @@ func main() {
         19,97,9,17,
     }
     i := smallest[0] // the control int
-    for z := 0; z < len(smallest); z++ {
-        if i > smallest[z] {
-            i = smallest[z]
+    for _, value := range smallest {
+        if i > value {
+            i =  value
         }
     }
     fmt.Println(i)
