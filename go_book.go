@@ -50,7 +50,7 @@ func main() {
             fmt.Println(i)
         }
     }
-    
+
     // Switch and FizzBuzz
 
     for i :=1; i<= 100; i++ {
@@ -92,4 +92,21 @@ func main() {
     fmt.Println(4 == len(xp_slc_2))
 
     // Maps
+    dict := make(map[string]int)
+    fmt.Println("length of map: ", len(dict))
+    dict["key"] = 10
+    fmt.Println(dict["key"])
+    fmt.Println("length of map: ", len(dict))
+    // delete key
+    fmt.Println("Removing the 'key' item.")
+    delete(dict, "key")
+    fmt.Println("length of map: ", len(dict))
+    // check to see if we can find "key"
+    if door, ok := dict["key"]; ok{
+        fmt.Println(door, ok)
+    } else {
+        fmt.Println("That key value pair doesn't exist, buster.")
+    }
+
+    // Array, Slice, Map problems
 }
