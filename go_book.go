@@ -11,6 +11,8 @@ func main() {
     fmt.Println(true || false)
     fmt.Println(!true)
 
+    // var memory [0xFF]uint8
+
     var a, b byte
     a = 255
     fmt.Printf("%v, %T, %b\n", a, a, a)
@@ -90,6 +92,7 @@ func main() {
     // Let's append to a slice
     xp_slc_2 := append(xp_slc, 26)
     fmt.Println(4 == len(xp_slc_2))
+    fmt.Println("Original array,", xp_slc)
 
     // Maps
     dict := make(map[string]int)
@@ -109,4 +112,23 @@ func main() {
     }
 
     // Array, Slice, Map problems
+
+    // 4th element == [3]
+    // length of that slice would be 3 with a cap of 9
+    // x[2:5] = ["c", "d", "e"]
+
+    // smallest number
+    smallest := []int{
+        48,96,86,68,
+        57,82,63,70,
+        37,34,83,27,
+        19,97,9,17,
+    }
+    i := smallest[0] // the control int
+    for z := 0; z < len(smallest); z++ {
+        if i > smallest[z] {
+            i = smallest[z]
+        }
+    }
+    fmt.Println(i)
 }
