@@ -63,4 +63,22 @@ func main() {
     for _, value := range q {
         fmt.Println(value)
     }
+    fmt.Println()
+
+    // Messing with arrays and slices and whatnot
+    xp := [5]float64{
+        98,
+        93,
+        77,
+        82,
+        83,
+    }
+
+    for _, value := range xp {
+        fmt.Println(value)
+    }
+    xp_slc := xp[:3]
+    fmt.Println(len(xp_slc))
+    fmt.Println(5 == cap(xp_slc))
+    fmt.Println(cap(xp_slc))
 }
