@@ -133,6 +133,11 @@ func main() {
     fmt.Println(i)
     avg_prblm := []float64{55, 8786, 942}
     fmt.Println(average(avg_prblm))
+    fmt.Println()
+    fmt.Println("Working on function stacks")
+    fmt.Println(f1())
+    the, greeting := multiple_values()
+    fmt.Println(the, greeting)
 }
 
 // Functions chapter
@@ -143,4 +148,19 @@ func average(xs []float64) float64 {
     }
 
     return total / float64(len(xs))
+}
+
+func f1() string {
+    return f2()
+}
+
+func f2() (r string) {
+    r = "Whuddup!"
+    return
+}
+
+// Returning multiple values
+func multiple_values() (r, s string) {
+    r, s = "Sup", "kid?"
+    return
 }
