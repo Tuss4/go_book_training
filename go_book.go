@@ -131,4 +131,16 @@ func main() {
         }
     }
     fmt.Println(i)
+    avg_prblm := []float64{55, 8786, 942}
+    fmt.Println(average(avg_prblm))
+}
+
+// Functions chapter
+func average(xs []float64) float64 {
+    total := 0.0
+    for _, v := range xs {
+        total += v
+    }
+
+    return total / float64(len(xs))
 }
