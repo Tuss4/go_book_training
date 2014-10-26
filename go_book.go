@@ -138,6 +138,9 @@ func main() {
     fmt.Println(f1())
     the, greeting := multiple_values()
     fmt.Println(the, greeting)
+    fmt.Println(add(1, 2, 3))
+    add_slc := []int{1, 2, 3}
+    fmt.Println(add(add_slc...))
 }
 
 // Functions chapter
@@ -162,5 +165,14 @@ func f2() (r string) {
 // Returning multiple values
 func multiple_values() (r, s string) {
     r, s = "Sup", "kid?"
+    return
+}
+
+// Variadic functions
+func add(args ...int) (total int) {
+    total = 0
+    for _, v := range args {
+        total += v
+    }
     return
 }
