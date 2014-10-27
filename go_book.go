@@ -141,6 +141,48 @@ func main() {
     fmt.Println(add(1, 2, 3))
     add_slc := []int{1, 2, 3}
     fmt.Println(add(add_slc...))
+    add_2 := func(x, y int) int {
+        return x + y
+    }
+    fmt.Println(add_2(1, 567))
+    // function having accesss to function scope aka a closure
+    i_val := 0
+    increment := func() int {
+        i_val ++
+        return i_val
+    }
+    fmt.Println(increment())
+    fmt.Println(increment())
+
+    nextEven := makeEvenGenerator()
+    fmt.Println(nextEven())
+    fmt.Println(nextEven())
+    fmt.Println(nextEven())
+
+    fmt.Println(factorial(4))
+    // defer second()
+    // first()
+    // fmt.Println()
+    // defer func() {
+    //     str := recover()
+    //     fmt.Println(str)
+    // }()
+    // panic("PANIC")
+
+    // halving function
+    fmt.Println(halves(1))
+    fmt.Println(halves(2))
+    // variadic function
+    num_list := []int{1, 2, 3, 756, 8898, 12, 475856869}
+    fmt.Println(find_the_greatest(num_list...))
+
+    //Odd Generator
+    nextOdd := makeOddGenerator()
+    fmt.Println(nextOdd())
+    fmt.Println(nextOdd())
+    fmt.Println(nextOdd())
+    fmt.Println(fibo(2))
+    fmt.Println(fibo(14))
 }
 
 // Functions chapter
@@ -175,4 +217,74 @@ func add(args ...int) (total int) {
         total += v
     }
     return
+}
+
+// Closure function
+func makeEvenGenerator() func() uint {
+    i := uint(0)
+    return func() (ret uint) {
+        ret = i
+        i += 2
+        return
+    }
+}
+
+// Recursive functions
+func factorial(x uint) uint {
+    if x == 0 {
+        return 1
+    }
+
+    return x * factorial(x -1)
+}
+
+// Defer, Panic & Recover
+func first() {
+    fmt.Println("1st")
+}
+
+func second() {
+    fmt.Println("2nd")
+}
+
+// Functions problems
+func halves(x uint) (uint, bool) {
+    result := x/2
+    var even bool
+    if x%2 == 0 {
+        even = true
+    } else {
+        even = false
+    }
+    return result, even
+}
+
+func find_the_greatest(args ...int) (i int) {
+    i = 0 
+    for _, value := range args {
+        if i < value {
+            i = value
+        }
+    }
+    return i
+}
+
+func makeOddGenerator() func() uint {
+    i := uint(1)
+    return func() (ret uint) {
+        ret = i
+        i += 2
+        return
+    }
+}
+
+func fibo(x uint) uint {
+    if x == 0 {
+        return 0
+    }
+    if x == 1 {
+        return 1
+    }
+
+    return fibo(x - 1) + fibo(x - 2)
 }
