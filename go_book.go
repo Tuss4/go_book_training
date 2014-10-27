@@ -2,6 +2,7 @@ package main
 
 import (
     "fmt"
+    "math"
 )
 
 func main() {
@@ -210,6 +211,14 @@ func main() {
     n := 2
     swap(&m, &n)
     fmt.Printf("m: %v, n: %v\n", m, n)
+
+    cir := Circle{0, 0, 5}
+    fmt.Println(cir.x, cir.y, cir.r)
+    fmt.Println(cir.area())
+    tj := Person{"Tomjo"}
+    tj.Talk()
+    num_17 := new(Android)
+    num_17.Talk()
 }
 
 func setMyName(name *string) *string {
@@ -360,4 +369,30 @@ func square(x *float64) {
 
 func swap(x, y *int) {
     *x, *y = *y, *x
+}
+
+// Structs
+type Circle struct {
+    x, y, r float64
+}
+
+func circleArea(c *Circle) float64 {
+    return math.Pi * c.r*c.r
+}
+
+func (c *Circle) area() float64 {
+    return math.Pi * c.r*c.r
+}
+
+type Person struct {
+    Name string
+}
+
+func (p *Person) Talk() {
+    fmt.Println("Hi, my name is", p.Name)
+}
+
+type Android struct {
+    Person
+    Model string
 }
