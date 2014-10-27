@@ -183,6 +183,10 @@ func main() {
     fmt.Println(nextOdd())
     fmt.Println(fibo(2))
     fmt.Println(fibo(14))
+    p_var := 5
+    fmt.Println(p_var)
+    zero(&p_var)
+    fmt.Println(p_var)
 }
 
 // Functions chapter
@@ -287,4 +291,13 @@ func fibo(x uint) uint {
     }
 
     return fibo(x - 1) + fibo(x - 2)
+}
+
+// Pointers 
+func zero(x *int) {
+    /*
+    So, if want my function to modify the value of the arg passed to it,
+    I have to pass through a pointer that will point to the args location in memory.
+    */
+    *x = 0
 }
