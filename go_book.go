@@ -186,7 +186,35 @@ func main() {
     p_var := 5
     fmt.Println(p_var)
     zero(&p_var)
+    fmt.Println(&p_var) // To see the actual memory location
     fmt.Println(p_var)
+    my_name := "Tomjo"
+    fmt.Println(my_name)
+    my_name = "Tomjo Soptame"
+    fmt.Println(my_name)
+
+    my_name = "Tomjo"
+    fmt.Println(my_name)
+
+    new_name := setMyName(&my_name)
+    fmt.Println(my_name)
+    fmt.Println(*new_name)
+    xPtr := new(int)
+    one(xPtr)
+    fmt.Println(*xPtr)
+    x_2_sqr := 1.5
+    fmt.Println(x_2_sqr)
+    square(&x_2_sqr)
+    fmt.Println(x_2_sqr) // Should be 2.25
+    m := 1
+    n := 2
+    swap(&m, &n)
+    fmt.Printf("m: %v, n: %v\n", m, n)
+}
+
+func setMyName(name *string) *string {
+    *name = "Tomjo Soptame"
+    return name
 }
 
 // Functions chapter
@@ -300,4 +328,36 @@ func zero(x *int) {
     I have to pass through a pointer that will point to the args location in memory.
     */
     *x = 0
+}
+
+func one(x *int) {
+    *x = 1
+}
+
+// Pointers problems
+
+/*
+You get the memory address of a variable by pre-pending an '&' to it.
+That turns it into a pointer which will point directly to its memory location.
+*/
+
+/*
+You assign a value to a pointer by prepending a '*' to the variable, and then putting the new
+value to the right side of the '='.
+*/
+
+/*
+You can create a new pointer by using the built-in function 'new()' with the var type as an arg.
+ex: x := new(string)
+*/
+
+/*Square problem*/
+func square(x *float64) {
+    *x = *x * *x
+}
+
+/*Swap problem*/
+
+func swap(x, y *int) {
+    *x, *y = *y, *x
 }
