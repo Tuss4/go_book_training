@@ -15,19 +15,25 @@ func f(n int) {
     }
 }
 
-func pinger(c chan string) {
+func pinger(c chan<- string) {
     for i := 0;; i++ {
         c <- "ping"
     }
 }
 
-func ponger(c chan string) {
+func ponger(c chan<- string) {
     for i := 0;; i++ {
         c <- "pong"
     }
 }
 
-func printer(c chan string) {
+func urkle(c chan<- string) {
+    for i := 0;; i++ {
+        c <- "Did I do thaaaat?"
+    }
+}
+
+func printer(c <- chan string) {
     for {
         msg := <- c
         fmt.Println(msg)
@@ -40,12 +46,55 @@ func main() {
     //     go f(i)
     // }
     // go f(0)
-    var c chan string = make(chan string)
+    // var c chan string = make(chan string)
 
-    go pinger(c)
-    go ponger(c)
-    go printer(c)
+    // go pinger(c)
+    // go ponger(c)
+    // go urkle(c)
+    // go printer(c)
+
+    c1 := make(chan string, 1)
+    c2 := make(chan string)
+
+    go func() {
+        for {
+            c1 <- "from 1"
+            time.Sleep(time.Second * 2)
+        }
+    }()
+    go func() {
+        for {
+            c2 <- "from 2"
+            time.Sleep(time.Second * 3)
+        }
+    }()
+    go func() {
+        for {
+            select {
+            case msg1 := <- c1:
+                fmt.Println("Message 1", msg1)
+            case msg2 := <- c2:
+                fmt.Println("Message 2", msg2)
+            case <-time.After(time.Second * 2):
+                fmt.Println("timeout") // Custom sleep function
+            // default:
+            //     fmt.Println("nothing ready")
+            }
+        }
+    }()
 
     var input string
     fmt.Scanln(&input)
 }
+
+// Problems
+
+/*
+If you point to chan type it can only be sent to "c chan <- string"
+If you point to the var it can only receive "c <- chan string"
+*/
+
+/*
+To create a buffered channel that would be asynchronous add an int
+inside of the make chan declaration.
+*/
