@@ -226,6 +226,8 @@ func main() {
     fmt.Println(totalArea(&cir, &rect))
     fmt.Println(rect.perimeter())
     fmt.Println(cir.perimeter())
+    // Concurrency 
+    go f(0)
 }
 
 func setMyName(name *string) *string {
@@ -388,6 +390,7 @@ func (c *Circle) area() float64 {
 }
 
 func (c *Circle) perimeter() float64 {
+    // Perimeter problem
     return 2 * math.Pi * c.r
 }
 
@@ -408,6 +411,7 @@ func (r *Rectangle) area() float64 {
 }
 
 func (r *Rectangle) perimeter() float64 {
+    // Perimeter problem
     l := distance(r.x1, r.y1, r.x1, r.y2)
     w := distance(r.x1, r.y1, r.x2, r.y1)
     return 2*(l + w)
@@ -428,7 +432,7 @@ type Android struct {
 
 type Shape interface {
     area() float64
-    perimeter() float64
+    perimeter() float64 // Perimeter problem
 }
 
 func totalArea(shapes ...Shape) float64 {
@@ -460,3 +464,10 @@ A method is a function that has a receiver to a struct.
 /*
 If you want to have a struct be a field inside of another struct.
 */
+
+// Concurrency
+func f(n int) {
+    for i := 0; i < 10; i++ {
+        fmt.Println(n, ":", i)
+    }
+}
