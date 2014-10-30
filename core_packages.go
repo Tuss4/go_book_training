@@ -10,6 +10,7 @@ import (
     "container/list"
     "sort"
     "hash/crc32"
+    "crypto/sha1"
 )
 
 func main() {
@@ -102,6 +103,11 @@ func main() {
         return
     }
     fmt.Println(h1, h2, h1 == h2)
+
+    h := sha1.New()
+    h.Write([]byte("test"))
+    bs = h.Sum([]byte{})
+    fmt.Println(bs, len(bs))
 }
 
 // Sort
