@@ -10,7 +10,7 @@ import (
 
 var base_url = "https://www.googleapis.com/youtube/v3"
 var query = "/search?part=snippet&q=Martial+Arts+Tricking"
-var api_key = "&key={YOUR API KEY}"
+var api_key = "&key={YOUR_API_KEY}"
 
 type Video struct {
     Id struct {
@@ -38,5 +38,7 @@ func main() {
     if err != nil {
         fmt.Println("Error:", err)
     }
-    fmt.Println(vs.Items)
+    for _, v := range vs.Items {
+        fmt.Println(v.Id.VideoId, v.Snippet.Title)
+    }
 }
