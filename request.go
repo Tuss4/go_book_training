@@ -42,6 +42,13 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
+    body, error_g := ioutil.ReadAll(resp.Body)
+    if error_g != nil {
+        fmt.Println(error_g)
+    }
+    fmt.Println(resp.Status)
+    fmt.Println(resp.Request)
+    fmt.Println(string(body))
     defer resp.Body.Close()
     // parse response
     var vs Videos
