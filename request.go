@@ -30,14 +30,13 @@ func main() {
     // read in API key
     key, error_ := ioutil.ReadFile("user_data.txt")
     if error_ != nil {
-        fmt.Println(error_)
+        log.Fatal(error_)
     }
-    fmt.Println(string(key))
     api_key += string(key)
-    fmt.Println(api_key)
+
     // buil url
     url := base_url + query + api_key
-    fmt.Println(url)
+
     // make request
     resp, err := http.Get(url)
     if err != nil {
@@ -48,7 +47,9 @@ func main() {
     var vs Videos
     err = json.NewDecoder(resp.Body).Decode(&vs)
     if err != nil {
-        fmt.Println("Error:", err)
+        fmt.Printf("%T\n", err)
+        // fmt.Println("Error:", err)
+        log.Fatal(err)
     }
     for _, v := range vs.Items {
         fmt.Println(v.Id.VideoId, v.Snippet.Title)
