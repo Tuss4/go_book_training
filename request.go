@@ -6,11 +6,11 @@ import (
     "log"
     "encoding/json"
     "net/http"
+    "io/ioutil"
 )
-
 var base_url = "https://www.googleapis.com/youtube/v3"
 var query = "/search?part=snippet&q=Martial+Arts+Tricking"
-var api_key = "&key={YOUR_API_KEY}"
+var api_key = "&key="
 
 type Video struct {
     Id struct {
@@ -27,12 +27,24 @@ type Videos struct {
 }
 
 func main() {
+    // read in API key
+    key, error_ := ioutil.ReadFile("user_data.txt")
+    if error_ != nil {
+        fmt.Println(error_)
+    }
+    fmt.Println(string(key))
+    api_key += string(key)
+    fmt.Println(api_key)
+    // buil url
     url := base_url + query + api_key
+    fmt.Println(url)
+    // make request
     resp, err := http.Get(url)
     if err != nil {
         log.Fatal(err)
     }
     defer resp.Body.Close()
+    // parse response
     var vs Videos
     err = json.NewDecoder(resp.Body).Decode(&vs)
     if err != nil {
